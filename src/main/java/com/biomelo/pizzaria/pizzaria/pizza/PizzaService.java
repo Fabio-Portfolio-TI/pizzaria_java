@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 public class PizzaService {
 
     private final PizzaRepository pizzaRepository;
-
     private final ModelMapper modelMapper;
+
+    public PizzaDTO criarPizza(PizzaDTO pizzaDTO) {
+      Pizza pizza =  modelMapper.map(pizzaDTO, Pizza.class);
+      pizzaRepository.save(pizza);
+      return modelMapper.map(pizza, PizzaDTO.class);
+    }
 }
